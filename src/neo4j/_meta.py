@@ -21,7 +21,8 @@ from __future__ import annotations
 import asyncio
 import platform
 import sys
-import tracemalloc
+# import tracemalloc 
+# for pypy
 import typing as t
 from functools import wraps
 from inspect import isclass
@@ -220,7 +221,8 @@ def _make_warning_decorator(
 
 def unclosed_resource_warn(obj):
     msg = f"Unclosed {obj!r}."
-    trace = tracemalloc.get_object_traceback(obj)
+    # trace = tracemalloc.get_object_traceback(obj)
+    trace=None
     if trace:
         msg += "\nObject allocated at (most recent call last):\n"
         msg += "\n".join(trace.format())
